@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="sui-app">
+  <div id="app" class="app">
 
       <!-- 组件 -->
-      <div class="sui-cell-left">
+      <div class="app-left">
         <ul>
           <li style="border-bottom: 2px solid aliceblue;"
             v-for="nodeM in nodeModels"
@@ -18,70 +18,52 @@
             </task-node-model>
 
           </li>
-          <li>
-            node info: {{ selectedElement.id }}
-          </li>
+
         </ul>
       </div>
 
-      <!-- <div>{{ $store }}</div> -->
-
       <!-- 画板 -->
-      <div class="sui-cell-right canvas">
-        <task-work-area
-          width=1000
-          height=500
-          :id="work_id"
-          @on-add-nodemodel="onAddNodeModel"
-          @on-mouse="mouseMenu"
-          ref="area">
+      <div class="app-right">
 
-          <!-- 连线 -->
-          <task-curve-path
-            :areaid="work_id"
-            deletable
-            :paths="paths"
-            ref="curve"
-            class="canvas-path"
-            @on-mouse="mouseFn"
-            @on-delete-node="deleteNode"
-            @on-mouse-over="mouseOverFn"
-            @on-mouse-out="mouseOutFn"/>
+        <!-- 画布 -->
+        <div class="canvas">
+          <task-work-area
+            width="1000"
+            height="800"
+            :id="work_id"
+            @on-add-nodemodel="onAddNodeModel"
+            @on-mouse="mouseMenu"
+            ref="area">
 
-          <!-- 节点 -->
-          <template
-            v-for="node in nodes">
-            <task-common-node
-              class="canvas-node"
-              :key="node.id"
-              :node="node"
-              deletable
-              @click="clickNode(node)"
-              @on-add-path="addPath"
-              @on-select.capture="selectlMethod"
-              @on-drag-start="dragStart"
-              @on-drag-ging="dragGing"
-              @on-drag-end="dragEnd"
+            <!-- 连线 -->
+            <task-curve-path :areaid="work_id" ref="curve"
+              deletable :paths="paths" class="canvas-path"
+              @on-mouse="mouseFn"
               @on-delete-node="deleteNode"
-              :updateTem="updateCompleted"
-              @on-mouse="mouseNodeMenu">
+              @on-mouse-over="mouseOverFn"
+              @on-mouse-out="mouseOutFn"/>
 
-              <task-menu @click-menu="selectMenue"/>
-            </task-common-node>
-          </template>
+            <!-- 节点 -->
+            <template v-for="node in nodes">
+              <task-common-node class="canvas-node" :key="node.id"
+                :node="node" deletable
+                @click="clickNode(node)"
+                @on-add-path="addPath"
+                @on-select.capture="selectlMethod"
+                @on-drag-start="dragStart"
+                @on-drag-ging="dragGing"
+                @on-drag-end="dragEnd"
+                @on-delete-node="deleteNode"
+                :updateTem="updateCompleted"
+                @on-mouse="mouseNodeMenu">
+                <task-menu @click-menu="selectMenue"/>
+              </task-common-node>
+            </template>
 
-        </task-work-area>
-
+          </task-work-area>
+        </div>
       </div>
-
-      <div class="info-board">
-        <div>{{currentDeletedNode}}</div>
-        ------------------------------------------
-        <div>{{currentDeletedPaths}}</div>
-      </div>
-
     </div>
-
 </template>
 
 <script>
@@ -206,39 +188,32 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .sui-app{
-    background-color: #eee;
-    width: 140px;
-    height: 500px;
-    .sui-cell-left{
-      position: absolute;
-      left: 0;
-    }
-    .sui-cell-right{
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 1000px;
-      height: 600px;
-      border: solid 1px #c1c1c1;
-      border-radius: 4px;
-      overflow: scroll;
-    }
-  }
-
-  .info-board{
+  .app{
+    display: flex;
     position: absolute;
-    width: 300px;
-    height: 300px;
+    top: 0;
     bottom: 0;
     left: 0;
+    right: 0;
+    width:100%;
+    height:100%;
+    .app-left{
+      width: 200px;
+      height: 100%;
+      background: #fff;
+      border-right: solid 2px #e1e1e1;
+    }
+    .app-right{
+      flex-grow: 1;
+      width: 0;
+      height: 100%;
+      overflow: auto;
+      position: relative;
+      .canvas{
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+    }
   }
-  // .sui-task-node-model-label {
-  //   height: 26px;
-  //   line-height: 26px;
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  //   white-space: nowrap;
-  // }
-
 </style>

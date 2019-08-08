@@ -9,6 +9,12 @@
     @dragover.prevent
     @drop.prevent="onAddNodeModel">
 
+    <ul class="tools-bar">
+      <li>保存</li>
+      <li>png</li>
+      <li>pdf</li>
+    </ul>
+
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -100,5 +106,15 @@ export default {
   background-color: #fff;
   position: relative;
   cursor: -webkit-grab;
+}
+
+.tools-bar{
+  position: fixed;
+  right: 40px;
+  top: 20px;
+  width: 200px;
+  height: 40px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3)
 }
 </style>

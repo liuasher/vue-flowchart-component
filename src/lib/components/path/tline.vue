@@ -14,8 +14,15 @@
       class="sui-task-tline-con"
       ref="con"
       :d="lpath"
+      :id="generateID"
       @contextmenu.prevent="mouseFn">
     </path>
+
+    <circle r="4" fill="#666">
+      <animateMotion dur="5s" repeatCount="indefinite">
+        <mpath :xlink:href="'#'+generateID"/>
+      </animateMotion>
+    </circle>
 
   </g>
 </template>
@@ -56,7 +63,11 @@ export default {
         this.portData.dotted ? `sui-task-tline-dotted` : ``
       ]
     },
-
+    generateID () {
+      let M = this.portData.Mxy
+      let T = this.portData.Txy
+      return `${M.x}-${M.y}^${T.x}-${T.y}`
+    },
     // line-hover
     conWrapHoverCls () {
       return [
