@@ -9,3 +9,5 @@ npm run dev
 如果后端重绘视图，直接刷新视图即可。前端也能支持视图重绘。
 
 支持“撤回”功能，结合重绘的话，可以做到，视图的更新操作由前端控制，后台返回操作错误时，再刷新视图或者撤回操作。这样可以避免绘图时的“闪屏”现象
+
+![1111](https://github.com/liuasher/vue-flowchart-component/blob/master/static/img/1565337015(1).jpg)
