@@ -9,11 +9,11 @@
     @dragover.prevent
     @drop.prevent="onAddNodeModel">
 
-    <ul class="tools-bar">
+    <!-- <ul class="tools-bar">
       <li>保存</li>
       <li>png</li>
       <li>pdf</li>
-    </ul>
+    </ul> -->
 
     <svg
       version="1.1"

@@ -12,7 +12,7 @@
     @on-mouse-leave="mouseLeave"
     @on-mouse="mouseMenu">
     <div
-      class="sui-task-common-node"
+      class="common-node"
       :style="nodesStyle">
 
       <div v-show="showMenu">
@@ -212,21 +212,20 @@ export default {
 </script>
 <style lang="less" scoped>
 
-/** 内部结构 */
-
 // node的样式
-.sui-task-common-node {
+.common-node {
     width: 180px;
     height: 30px;
     background-color:transparent;
-    border: 1px solid #289de9;
-    border-radius: 15px;
+    border: 1px solid #7db2d4;
+    border-radius: 4px;
     font-size: 12px;
     position: relative;
-    -webkit-transition: background-color 0.2s;
-    transition: background-color 0.2s;
+    // -webkit-transition: background-color 0.2s;
+    // transition: background-color 0.2s;
 }
 
+// 选择栏
 .flex-wrap{
   position: absolute;
   width: 100%;
@@ -237,19 +236,19 @@ export default {
   z-index: 500;
   outline: none;
 }
-
 // 节点图标
 .iconfont {
-    float: left;
-    color: #fff;
-    font-size: 16px;
-    background-color: #289de9;
-    width: 26px;
-    height: 26px;
-    text-align:center;
-    line-height: 26px;
-    border-radius: 100%;
+  float: left;
+  font-size: 16px;
+  margin-left: 2px;
+  border-radius: 2px;
+  background-color: #eeebeb;
+  width: 26px;
+  height: 26px;
+  text-align:center;
+  line-height: 26px;
 }
+
 .sui-task-common-node-name {
     float: left;
     margin-left: 2px;

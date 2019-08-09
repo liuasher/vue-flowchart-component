@@ -1,20 +1,11 @@
+### vue-flow-chart
 
+```shell
+npm run dev
+```
 
-App
-  --> task-node-model
+已经提供了各个事件节点的回调，包括节点&连线的增删查改，删除连线时两端的节点，以及删除节点时关联的联系。可以根据具体业务类型，在必要的事件节点，弹出自定义的表格，进行参数录入。
 
-  --> task-work-area
+如果后端重绘视图，直接刷新视图即可。前端也能支持视图重绘。
 
-      --> task-curve-path 
-      --> task-common-node 
-
-          --> dom
-          --> in-common-ls
-
-              --> in-port
-              
-          --> out-common-ls
-
-              --> out-port
-
-      --> task-initial-node
+支持“撤回”功能，结合重绘的话，可以做到，视图的更新操作由前端控制，后台返回操作错误时，再刷新视图或者撤回操作。这样可以避免绘图时的“闪屏”现象

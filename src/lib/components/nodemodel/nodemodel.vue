@@ -60,7 +60,6 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
-    border-radius: 13px;
     border: 1px solid transparent;
     cursor: -webkit-grab;
 }

@@ -107,51 +107,6 @@ const mutations = {
 const actions = {
   /** 需要同时设定 */
   setGlobal ({commit, state}, {nodes, paths}) {
-    let dictionary = []
-
-    paths.forEach((path, index) => {
-      let sp = `${path.headNid}_s${path.headPortIndex}`
-      let ep = `${path.tailNid}_e${path.tailPortIndex}`
-      path.startPort = sp
-      path.endPort = ep
-
-      dictionary.push(sp)
-      dictionary.push(ep)
-    })
-
-    nodes.forEach((node, index) => {
-      console.log(node.style)
-      let finalStyle = JSON.parse(node.style)
-
-      let finalInPorts = finalStyle.inPort
-      let finalOutPorts = finalStyle.outPort
-
-      let ipt = []
-      let opt = []
-
-      finalInPorts.forEach(port => {
-        // if (!port) return;
-        let combine = `${node.id}_e${port}`
-        let connected = (dictionary.indexOf(combine) !== -1)
-        ipt.push({
-          id: combine,
-          isConnected: connected
-        })
-      })
-      finalOutPorts.forEach(port => {
-        // if (!port) return;
-        let combine = `${node.id}_s${port}`
-        let connected = (dictionary.indexOf(combine) !== -1)
-        opt.push({
-          id: combine,
-          isConnected: connected
-        })
-      })
-      node.style = finalStyle
-      node.inPorts = ipt
-      node.outPorts = opt
-    })
-
     state.nodes = nodes
     state.paths = paths
   },
